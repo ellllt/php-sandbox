@@ -28,14 +28,14 @@ class Money implements ExpressionInterface
             && $this->currency() === $money->currency();
     }
 
-    public static function dollar(int $amount): Money
+    public static function dollar(int $amount): self
     {
-        return new Money($amount, "USD");
+        return new self($amount, "USD");
     }
 
-    public static function franc(int $amount): Money
+    public static function franc(int $amount): self
     {
-        return new Money($amount, "CRF");
+        return new self($amount, "CRF");
     }
 
     public function currency(): string
@@ -45,11 +45,11 @@ class Money implements ExpressionInterface
 
     public  function times(int $multiplier): self
     {
-        return new Money($this->amount * $multiplier, $this->currency);
+        return new self($this->amount * $multiplier, $this->currency);
     }
 
-    public  function plus(Money $addend): ExpressionInterface
+    public  function plus(self $addend): ExpressionInterface
     {
-        return new Money($this->amount + $addend->getAmount(), $this->currency);
+        return new self($this->amount + $addend->getAmount(), $this->currency);
     }
 }
