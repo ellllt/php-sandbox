@@ -8,8 +8,14 @@ use tdd\Franc;
 Abstract class Money
 {
     protected int $amount;
+    protected string $currency;
     abstract protected function times(int $multiplier): self;
-    abstract protected function currency(): string;
+
+    public function __construct(int $amount, string $currency)
+    {
+        $this->amount = $amount;
+        $this->currency = $currency;
+    }
 
     protected function getAmount(): int
     {
@@ -23,11 +29,16 @@ Abstract class Money
 
     public static function dollar(int $amount): Dollar
     {
-        return new Dollar($amount);
+        return new Dollar($amount, "USD");
     }
 
     public static function franc(int $amount): Franc
     {
-        return new Franc($amount);
+        return new Franc($amount, "CRF");
+    }
+
+    public function currency(): string
+    {
+        return $this->currency;
     }
 }

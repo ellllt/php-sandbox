@@ -6,21 +6,13 @@ use tdd\Money;
 
 class franc extends Money
 {
-    private string $currency;
-
-    public function __construct(int $amount)
+    public function __construct(int $amount, string $currency)
     {
-        $this->amount = $amount;
-        $this->currency = "CRF";
+        parent::__construct($amount, $currency);
     }
 
     public function times(int $multiplier): Money
     {
-        return new self($this->amount * $multiplier);
-    }
-
-    public function currency(): string
-    {
-        return $this->currency;
+        return Money::franc($this->amount * $multiplier, "");
     }
 }

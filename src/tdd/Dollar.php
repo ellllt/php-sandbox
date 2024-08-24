@@ -6,22 +6,14 @@ use tdd\Money;
 
 class Dollar extends Money
 {
-    private string $currency;
-
-    public function __construct(int $amount)
+    public function __construct(int $amount, string $currency)
     {
-        $this->amount = $amount;
-        $this->currency = "USD";
+        parent::__construct($amount, $currency);
     }
 
     public function times(int $multiplier): Money
     {
-        return new self($this->amount * $multiplier);
-    }
-
-    public function currency(): string
-    {
-        return $this->currency;
+        return Money::dollar($this->amount * $multiplier, "");
     }
 }
 
