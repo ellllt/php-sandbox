@@ -9,6 +9,7 @@ Abstract class Money
 {
     protected int $amount;
     abstract protected function times(int $multiplier): self;
+    abstract protected function currency(): string;
 
     protected function getAmount(): int
     {
