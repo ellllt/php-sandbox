@@ -2,10 +2,10 @@
 
 namespace tdd;
 
-class Franc {
+use tdd\Money;
 
-    private int $amount;
-
+class franc extends Money
+{
     public function __construct(int $amount)
     {
         $this->amount = $amount;
@@ -14,15 +14,5 @@ class Franc {
     public function times(int $multiplier): self
     {
         return new self($this->amount * $multiplier);
-    }
-
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    public function equals(Franc $franc): bool
-    {
-        return $this->amount === $franc->getAmount();
     }
 }

@@ -1,4 +1,5 @@
 <?php
+require '/var/www/html/tdd/Money.php';
 require '/var/www/html/tdd/Dollar.php';
 require '/var/www/html/tdd/Franc.php';
 
@@ -20,6 +21,9 @@ class MoneyTest extends TestCase
         $five = new Dollar(5);
         $this->assertTrue($five->equals(new Dollar(5)));
         $this->assertFalse($five->equals(new Dollar(6)));
+        $five = new Franc(5);
+        $this->assertTrue($five->equals(new Franc(5)));
+        $this->assertFalse($five->equals(new Franc(6)));
     }
 
     public function testFrancMultiplication(): void
