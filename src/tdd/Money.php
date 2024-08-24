@@ -35,7 +35,7 @@ class Money implements ExpressionInterface
 
     public static function franc(int $amount): self
     {
-        return new self($amount, "CRF");
+        return new self($amount, "CHF");
     }
 
     public function currency(): string
