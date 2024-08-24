@@ -25,7 +25,7 @@ class Money implements ExpressionInterface
     public function equals(Money $money): bool
     {
         return $this->amount === $money->getAmount()
-            && $this->currency() === $money->currency();
+            && $this->currency === $money->getCurrency();
     }
 
     public static function dollar(int $amount): self
@@ -38,7 +38,7 @@ class Money implements ExpressionInterface
         return new self($amount, "CHF");
     }
 
-    public function currency(): string
+    public function getCurrency(): string
     {
         return $this->currency;
     }
