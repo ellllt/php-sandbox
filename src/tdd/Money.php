@@ -11,8 +11,8 @@ class Money
         return $this->amount;
     }
 
-    public function equals(Money $Money): bool
+    public function equals(Money $money): bool
     {
-        return $this->amount === $Money->getAmount();
+        return $this->amount === $money->getAmount() && get_class($this) === get_class($money);
     }
 }
