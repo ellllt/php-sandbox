@@ -3,8 +3,10 @@
 namespace tdd;
 
 require '/var/www/html/tdd/ExpressionInterface.php';
+require '/var/www/html/tdd/Sum.php';
 
 use tdd\ExpressionInterface;
+use tdd\Sum;
 
 class Money implements ExpressionInterface
 {
@@ -17,7 +19,7 @@ class Money implements ExpressionInterface
         $this->currency = $currency;
     }
 
-    protected function getAmount(): int
+    public function getAmount(): int
     {
         return $this->amount;
     }
@@ -50,6 +52,11 @@ class Money implements ExpressionInterface
 
     public  function plus(self $addend): ExpressionInterface
     {
-        return new self($this->amount + $addend->getAmount(), $this->currency);
+        return new Sum($this, $addend);
+    }
+
+    public function reduce(String $to): Money
+    {
+        return $this;
     }
 }

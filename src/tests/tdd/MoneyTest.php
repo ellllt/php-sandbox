@@ -5,6 +5,7 @@ require '/var/www/html/tdd/Bank.php';
 use PHPUnit\Framework\TestCase;
 use tdd\Money;
 use tdd\Bank;
+use tdd\Sum;
 
 class MoneyTest extends TestCase
 {
@@ -37,6 +38,28 @@ class MoneyTest extends TestCase
         $bank = new Bank();
         $reduced = $bank->reduce($sum, "USD");
         $this->assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testPlusReturnSum(): void
+    {
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
+        $this->assertEquals($five, $sum->getAugend());
+    }
+
+    public function testReduceSum(): void
+    {
+        $sum = new Sum(Money::dollar(3), Money::dollar(4));
+        $bank = new Bank();
+        $result = $bank->reduce($sum, "USD");
+        $this->assertEquals(Money::dollar(7), $result);
+    }
+
+    public function testReduceMoney(): void
+    {
+        $bank = new Bank();
+        $result = $bank->reduce(Money::dollar(1), "USD");
+        $this->assertEquals(Money::dollar(1), $result);
     }
 }
  
