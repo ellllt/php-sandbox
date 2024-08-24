@@ -8,12 +8,12 @@ class Dollar {
 
     public function __construct(int $amount)
     {
-         $this->amount = $amount;
-    }
+        $this->amount = $amount;
 
-    public function times(int $multiplier): void
+    }
+    public function times(int $multiplier): self
     {
-         $this->amount *= $multiplier;
+        return new self($this->amount * $multiplier);
     }
 
     public function getAmount(): int
