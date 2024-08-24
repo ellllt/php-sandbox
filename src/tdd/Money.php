@@ -2,7 +2,11 @@
 
 namespace tdd;
 
-class Money
+require '/var/www/html/tdd/ExpressionInterface.php';
+
+use tdd\ExpressionInterface;
+
+class Money implements ExpressionInterface
 {
     protected int $amount;
     protected string $currency;
@@ -42,5 +46,10 @@ class Money
     public  function times(int $multiplier): self
     {
         return new Money($this->amount * $multiplier, $this->currency);
+    }
+
+    public  function plus(Money $addend): ExpressionInterface
+    {
+        return new Money($this->amount + $addend->getAmount(), $this->currency);
     }
 }

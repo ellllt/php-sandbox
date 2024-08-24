@@ -1,8 +1,10 @@
 <?php
 require '/var/www/html/tdd/Money.php';
+require '/var/www/html/tdd/Bank.php';
 
 use PHPUnit\Framework\TestCase;
 use tdd\Money;
+use tdd\Bank;
 
 class MoneyTest extends TestCase
 {
@@ -26,6 +28,15 @@ class MoneyTest extends TestCase
     {
         $this->assertEquals("USD", Money::dollar(1)->currency());
         $this->assertEquals("CRF", Money::franc(1)->currency());
+    }
+
+    public function testSimpleAddition(): void
+    {
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, "USD");
+        $this->assertEquals(Money::dollar(10), $reduced);
     }
 }
  
