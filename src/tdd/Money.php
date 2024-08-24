@@ -5,11 +5,10 @@ namespace tdd;
 use tdd\Dollar;
 use tdd\Franc;
 
-Abstract class Money
+class Money
 {
     protected int $amount;
     protected string $currency;
-    abstract protected function times(int $multiplier): self;
 
     public function __construct(int $amount, string $currency)
     {
@@ -24,21 +23,27 @@ Abstract class Money
 
     public function equals(Money $money): bool
     {
-        return $this->amount === $money->getAmount() && get_class($this) === get_class($money);
+        return $this->amount === $money->getAmount()
+            && $this->currency() === $money->currency();
     }
 
-    public static function dollar(int $amount): Dollar
+    public static function dollar(int $amount): Money
     {
-        return new Dollar($amount, "USD");
+        return new Money($amount, "USD");
     }
 
-    public static function franc(int $amount): Franc
+    public static function franc(int $amount): Money
     {
-        return new Franc($amount, "CRF");
+        return new Money($amount, "CRF");
     }
 
     public function currency(): string
     {
         return $this->currency;
+    }
+
+    public  function times(int $multiplier): self
+    {
+        return new Money($this->amount * $multiplier, $this->currency);
     }
 }
