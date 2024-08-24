@@ -2,9 +2,6 @@
 
 namespace tdd;
 
-use tdd\Dollar;
-use tdd\Franc;
-
 class Money
 {
     protected int $amount;
