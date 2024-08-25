@@ -27,9 +27,14 @@ class Sum implements ExpressionInterface
         return $this->addend;
     }
 
+    public function times(int $multiplier): ExpressionInterface
+    {
+        return new self($this->augend->times($multiplier), $this->addend->times($multiplier));
+    }
+
     public function plus(ExpressionInterface $addend): ExpressionInterface
     {
-        return null;
+        return new self($this, $addend);
     }
 
     public function reduce(Bank $bank, String $to): Money
