@@ -4,6 +4,7 @@ namespace tdd;
 
 use tdd\ExpressionInterface;
 use tdd\Money;
+use tdd\Bank;
 
 class Sum implements ExpressionInterface
 {
@@ -26,7 +27,7 @@ class Sum implements ExpressionInterface
         return $this->addend;
     }
 
-    public function reduce(String $to): Money
+    public function reduce(Bank $bank, String $to): Money
     {
         $amount = $this->augend->getAmount() + $this->addend->getAmount();
         return new Money($amount, $to);

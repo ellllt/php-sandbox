@@ -7,6 +7,7 @@ require '/var/www/html/tdd/Sum.php';
 
 use tdd\ExpressionInterface;
 use tdd\Sum;
+use tdd\Bank;
 
 class Money implements ExpressionInterface
 {
@@ -45,18 +46,19 @@ class Money implements ExpressionInterface
         return $this->currency;
     }
 
-    public  function times(int $multiplier): self
+    public function times(int $multiplier): self
     {
         return new self($this->amount * $multiplier, $this->currency);
     }
 
-    public  function plus(self $addend): ExpressionInterface
+    public function plus(self $addend): ExpressionInterface
     {
         return new Sum($this, $addend);
     }
 
-    public function reduce(String $to): Money
+    public function reduce(Bank $bank, String $to): Money
     {
-        return $this;
+        $rate = $bank->rate($this->currency, $to);
+        return new Money($this->amount / $rate, $to);
     }
 }

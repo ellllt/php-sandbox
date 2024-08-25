@@ -2,7 +2,9 @@
 
 namespace tdd;
 
+use tdd\Bank;
+
 interface ExpressionInterface
 {
-    public function reduce(String $to): Money;
+    public function reduce(Bank $bank, string $to): Money;
 }
