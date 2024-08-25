@@ -46,12 +46,12 @@ class Money implements ExpressionInterface
         return $this->currency;
     }
 
-    public function times(int $multiplier): self
+    public function times(int $multiplier): ExpressionInterface
     {
         return new self($this->amount * $multiplier, $this->currency);
     }
 
-    public function plus(self $addend): ExpressionInterface
+    public function plus(ExpressionInterface $addend): ExpressionInterface
     {
         return new Sum($this, $addend);
     }

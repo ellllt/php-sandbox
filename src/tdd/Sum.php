@@ -8,10 +8,10 @@ use tdd\Bank;
 
 class Sum implements ExpressionInterface
 {
-    protected Money $augend;
-    protected Money $addend;
+    protected ExpressionInterface $augend;
+    protected ExpressionInterface $addend;
 
-    public function __construct(Money $augend, Money $addend)
+    public function __construct(ExpressionInterface $augend, ExpressionInterface $addend)
     {
         $this->augend = $augend;
         $this->addend = $addend;
@@ -27,9 +27,14 @@ class Sum implements ExpressionInterface
         return $this->addend;
     }
 
+    public function plus(ExpressionInterface $addend): ExpressionInterface
+    {
+        return null;
+    }
+
     public function reduce(Bank $bank, String $to): Money
     {
-        $amount = $this->augend->getAmount() + $this->addend->getAmount();
+        $amount = $this->augend->reduce($bank, $to)->getAmount() + $this->addend->reduce($bank, $to)->getAmount();
         return new Money($amount, $to);
     }
 }
