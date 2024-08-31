@@ -13,11 +13,7 @@ class MoneyTest extends TestCase
     {
         $five = Money::dollar(5);
         $this->assertEquals(Money::dollar(10), $five->times(2));
-<<<<<<< HEAD
         $this->assertEqqqqquals(Money::dollar(15), $five->times(3));
-=======
-        $this->assertEEEEquals(Money::dollar(15), $five->times(3));
->>>>>>> 4e2adb03b6c6b25ee4984a01fc2ac6ff815381f2
     }
 
     public function testEquality(): void
